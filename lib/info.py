@@ -39,9 +39,14 @@ class Info:
                 levelColor = 'magenta'
             elif self.level in [3, 4]:
                 levelColor = 'red'
+            # 绘制表
+            # show_header: 表格标题行
+            # show_lines: 表格分隔线
             table = Table(show_header=False, show_lines=True)
+            # 向表格中添加列，内容左对齐
             table.add_column("Title", justify="left")
             table.add_column("Result", justify="left")
+            # 表格中添加行，支持更改文字格式
             table.add_row(get_value('TESTITEMS'), f'[bold green]{self.title}[/bold green]')
             table.add_row(get_value('CASEDESC'), f'[bold yellow]{self.info}[/bold yellow]')
             table.add_row(
@@ -49,4 +54,5 @@ class Info:
                 f'[bold {levelColor}]{level[self.level]}[/bold {levelColor}]',
             )
             table.add_row(get_value('PROJECTDESC'), f'[bold]{self.result}[/bold]')
+            # 在终端中打印表格
             console.print(table)

@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
 
+# 定义两个字典，分别为中文与英文
+# 写入字典后，通过 key 取值，调用 info 打印相关信息
+
 def init():
     global zh_global_dict
     zh_global_dict = {}

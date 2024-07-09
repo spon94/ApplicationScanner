@@ -31,6 +31,8 @@ class RunCMD:
         tasks.append(self)
         return self.p.communicate()
 
+    # @property 装饰器
+    # 将方法转换为属性，使得我们可以像访问属性一样访问它们。
     @property
     def is_running(self):
         if self.p.poll() is None:

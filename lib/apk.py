@@ -17,6 +17,10 @@ apksigner = str(Path(__file__).parents[1] / 'ThirdTools/apksigner.jar')
 bundletool = str(Path(__file__).parents[1] / 'ThirdTools/bundletool.jar')
 certificate = str(Path(__file__).parents[1] / 'ThirdTools/Certificate')
 
+
+# 存放有关 apk 扫描类
+# Android 文件夹中，除 inti.py 文件外，均继承自 Base.py 文件夹中定义的 Base 类
+# 对 scan 方法进行重写后，使用 register() 完成注册工作，写入 scanners 字典中
 scanners = {}
 
 
