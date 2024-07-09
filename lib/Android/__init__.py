@@ -2,6 +2,7 @@ import os
 import importlib
 import logging
 
+# 语法用于相对导入。在这里，from ..表示从当前模块所在的目录的上级目录开始导入。
 from .. import ROOT_PATH, name
 
 logger = logging.getLogger(__name__)
