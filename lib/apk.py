@@ -17,7 +17,6 @@ apksigner = str(Path(__file__).parents[1] / 'ThirdTools/apksigner.jar')
 bundletool = str(Path(__file__).parents[1] / 'ThirdTools/bundletool.jar')
 certificate = str(Path(__file__).parents[1] / 'ThirdTools/Certificate')
 
-
 # 存放有关 apk 扫描类
 # Android 文件夹中，除 inti.py 文件外，均继承自 Base.py 文件夹中定义的 Base 类
 # 对 scan 方法进行重写后，使用 register() 完成注册工作，写入 scanners 字典中
@@ -37,7 +36,9 @@ def import_scanners(scanners_imports):
     for runner_import in scanners_imports:
         __import__(runner_import)
 
-from . import Android # 执行导入包到 scanners
+#from . import Android # 执行导入包到 scanners
+
+from . import link
 
 def apkScan(inputfile, save):
     if inputfile.endswith('.apk'):
@@ -89,7 +90,7 @@ def apkScan(inputfile, save):
             # 如果scanner(key)返回的值不为None，则条件成立，进入条件语句块
             # 海象运算符在Python 3.8及更高版本中可用
             if c := scanner(key):
-                c(filePath).scan()
+                c(filePath,inputfile).scan()
     except Exception:
         # 在异常处理代码块中打印当前异常的详细信息
         print(traceback.format_exc())

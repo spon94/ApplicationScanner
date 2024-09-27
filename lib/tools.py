@@ -119,7 +119,7 @@ def getURL(line):
 def grepThirdFile():
     return "grep -v '" + '\|'.join(whiteList) + "'"
 
-
+# 获取 grep 扫描结果的 smali 文件路径
 def getSmalis(arrs):
     paths = []
     for item in arrs:

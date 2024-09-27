@@ -22,6 +22,7 @@ class ClipboardCheck(Base):
         for path in paths:
             with open(path, 'r') as f:
                 lines = f.readlines()
+                # 反转列表后 count - i 即为目标所在行
                 lines.reverse()
                 count = len(lines)
                 name = getFileName(path)

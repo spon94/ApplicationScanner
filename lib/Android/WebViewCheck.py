@@ -69,6 +69,8 @@ class WebViewCheck(Base):
                             resultsHidden.append(name)
                     # 明文密码
                     if 'Landroid/webkit/WebSettings;->setSavePassword' in line:
+                        # find(): 查找子串在字符串中第一个字符索引的位置
+                        # 查找到对应函数后，需要进一步分析该函数传入的参数值
                         start = line.find("{") + 1
                         end = line.find("}")
                         v = line[start:end].split(', ')[-1]
