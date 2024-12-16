@@ -5,26 +5,19 @@ from ..info import Info
 from ..tools import *
 
 
-class WeakRSACheck(Base):
+class SharedPreferencesCheck(Base):
     def scan(self):
-        set_values_for_key(key='WEAKRSATITLE', zh='WEAKRSA加密检测',
+        set_values_for_key(key='SHAREDPREFERENCETITLE', zh='SHAREDPREFERENCE加密检测',
                            en='SQL Ciphe check')
-        set_values_for_key(key='SQLCHECHINFO', zh='WEAKRSA加密检测',
+        set_values_for_key(key='SHAREDPREFERENCEINFO', zh='SHAREDPREFERENCE加密检测',
                            en="Detect whether there are usage conditions for SQL Cipher")
 
-        TITLE = get_value('WEAKRSATITLE')
+        TITLE = get_value('SHAREDPREFERENCETITLE')
         LEVEL = 2
-        INFO = get_value('SQLCHECHINFO')
-
-        UNSAFE_RSA_PADDING = [
-            "RSA/ECB/PKCS1Padding",
-            "RSA/None/PKCS1Padding",
-            "RSA/ECB/NoPadding",
-            "RSA/None/NoPadding"
-        ]
+        INFO = get_value('SHAREDPREFERENCEINFO')
 
         strline = cmdString(
-            f'grep -r "RSA" {self.appPath}'
+            f'grep -r "getSharedPreferences" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []
@@ -38,30 +31,23 @@ class WeakRSACheck(Base):
                 for i in range(count):
                     line = lines[i]
                     # 检查密钥长度
-                    if 'Landroid/security/KeyPairGeneratorSpec$builder;->setKeySize' in line:
+                    if 'Landroid/content/Context;->getSharedPreferences' in line:
                         start = line.find("{") + 1
                         end = line.find("}")
-                        v = line[start:end]
+                        # 提取参数 p0, v4, v3
+                        v = line[start:end].split(',')[-1]
                         for j in range(i,count):
                             ll = lines[j]
-                            if v in ll and '0x209' in ll:
-                                result = 'Danger cipher length ' + name + ':' + line.split(',')[2:]
+                            # 除 0x0 外都是危险模式
+                            if v in ll and ('0x1' in ll and '0x2' in ll and '0x3' in ll):
+                                result = name + ':' + str(count - i)
                                 if result not in results:
                                     results.append(result)
                                 break
-                    # 检查填充方式
-                    if 'Landroid/security/KeyPairGenerator;' in line or \
-                        'Ljava/security/KeyFactory;' in line or \
-                        'Ljava/security/KeyStore;' in line:
-                         for padding in UNSAFE_RSA_PADDING:
-                            if padding in line:
-                                result = 'Danger padding method ' + name + ':' + line.split(',')[2:]
-                                if result not in results:
-                                    results.append(result)
                                 
         if len(results) > 0:
             Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='\n'.join(results)).description()
         else:
             Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='safe').description()
 
-register(WeakRSACheck)
+register(SharedPreferencesCheck)

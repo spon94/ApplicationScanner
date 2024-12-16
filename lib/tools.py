@@ -16,7 +16,7 @@ whiteList = ['facebook', 'tencent', 'huawei', 'aliyun', 'android/support', 'xiao
              'bugtags', 'trello', 'bumptech', 'jiguang', 'github', 'umeng', 'greenrobot', 'eclipse', 'bugly', 'sina',
              'weibo', 'j256', 'taobao/weex', 'iflytek', 'androidx/', 'meizu', 'io/agora', 'ijkplayer', 'sqlcipher',
              'cmic/sso', 'shanyan_sdk', 'svgaplayer', 'io/flutter', 'bytedance', 'kotlin', 'org/apache', 'org/aspectj',
-             'baidu', 'youzan', 'jdpaysdk', 'qq', 'kotlinx', '/android/']
+             'baidu', 'youzan', 'jdpaysdk', 'qq', 'kotlinx', '/android/', 'kwai', 'wendu']
 
 tasks = []
 

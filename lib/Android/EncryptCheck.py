@@ -37,7 +37,7 @@ class EncryptCheck(Base):
                             ll = lines[j]
                             if f'const-string {v}' in ll:
                                 s = ll.strip().split(', ')[-1].replace('"', '')
-                                if 'ECB' in s or s == 'DES' or s == 'AES':
+                                if ('ECB' in s or 'OFB' in s) or s == 'DES' or s == 'AES':
                                     result = f'{name} : {str(count - i)}'
                                     if result not in results:
                                         results.append(result)
