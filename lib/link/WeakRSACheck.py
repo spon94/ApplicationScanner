@@ -24,7 +24,7 @@ class WeakRSACheck(Base):
         ]
 
         strline = cmdString(
-            f'grep -r "RSA" {self.appPath}'
+            f'grep -Ir "RSA" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

@@ -16,7 +16,7 @@ class ClipboardCheck(Base):
         LEVEL = 2
         INFO = get_value('CLIPCHECHINFO')
 
-        strline = cmdString('grep -r "ClipboardManager;->setPrimaryClip\|ClipboardManager;->setText" ' + self.appPath)
+        strline = cmdString('grep -Ir "ClipboardManager;->setPrimaryClip\|ClipboardManager;->setText" ' + self.appPath)
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

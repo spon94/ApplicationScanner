@@ -16,7 +16,7 @@ class ZipCheck(Base):
         LEVEL = 3
         INFO = get_value('ZIPDCHECHINFO')
 
-        strline = cmdString(f'grep -r "Ljava/util/zip/ZipInputStream" {self.appPath}')
+        strline = cmdString(f'grep -Ir "Ljava/util/zip/ZipInputStream" {self.appPath}')
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

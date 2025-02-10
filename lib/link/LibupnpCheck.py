@@ -6,11 +6,11 @@ from ..apk import register
 from ..info import Info
 
 
-class GifDrawableCheck(Base):
+class LibupnpCheck(Base):
     def scan(self):
-        set_values_for_key(key='GITDRAWABLECHECKTITLE', zh='Android-gif-Drawable远程代码执行漏洞',
+        set_values_for_key(key='GITDRAWABLECHECKTITLE', zh='libupnp缓冲区溢出漏洞',
                            en='So file cracking risk detection')
-        set_values_for_key(key='GITDRAWABLECHECHINFO', zh='检测Apk中是否存在Android-gif-Drawable远程代码执行漏洞',
+        set_values_for_key(key='GITDRAWABLECHECHINFO', zh='检测Apk中是否存在libupnp缓冲区溢出漏洞',
                            en="Detect whether the so file in Apk can be cracked and read")
 
         TITLE = get_value('GITDRAWABLECHECKTITLE')
@@ -23,12 +23,13 @@ class GifDrawableCheck(Base):
         for item in arr:
             strline = f'ls {item[:-1]}'
             out = os.popen(strline).readlines()
-            if 'android-git-drawable' in out:
+            if 'libupnp' in out:
                 filePath = '/'.join(item[:-1].split('/')[-2:])
                 result += filePath + '\n'
+                break
         
         if result == '':
           result += 'Safe'
         Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result=result).description()
 
-register(GifDrawableCheck)
+register(LibupnpCheck)

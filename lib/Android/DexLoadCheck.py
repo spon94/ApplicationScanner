@@ -17,7 +17,7 @@ class DexLoadCheck(Base):
         INFO = get_value('DEXLOADCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Ldalvik/system/DexClassLoader;-><init>" {self.appPath}'
+            f'grep -Ir "Ldalvik/system/DexClassLoader;-><init>" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

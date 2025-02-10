@@ -17,7 +17,7 @@ class EncryptCheck(Base):
         INFO = get_value('ENCRYPTCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Ljavax/crypto/Cipher;->getInstance(Ljava/lang/String;)Ljavax/crypto/Cipher;" {self.appPath}'
+            f'grep -Ir "Ljavax/crypto/Cipher;->getInstance(Ljava/lang/String;)Ljavax/crypto/Cipher;" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

@@ -53,7 +53,7 @@ class HardCodingCheck(Base):
         results = []
         for api in encryption_apis:
             strline = cmdString(
-                f'grep -ir "{api}" {self.appPath}'
+                f'grep -Iir "{api}" {self.appPath}'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:

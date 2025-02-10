@@ -35,13 +35,13 @@ class WebViewHiddenInterfaceCheck(Base):
         else:
           # 全局搜索是否使用webview
           strline = cmdString(
-            f'grep -r "Landroid/webkit/WebView"'
+            f'grep -Ir "Landroid/webkit/WebView" {self.appPath}'
           )
           paths = getSmalis(os.popen(strline).readlines())
           # 若使用则搜索是否移除不安全接口
           if paths != []:
             strline = cmdString(
-              f'grep -r "removeJavascriptInterface"'
+              f'grep -Ir "removeJavascriptInterface" {self.appPath}'
             )
             remove_funcs = getSmalis(os.popen(strline).readlines())
             # 若未调用改接口则存在风险

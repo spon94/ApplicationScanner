@@ -16,7 +16,7 @@ class URLCheck(Base):
         LEVEL = 1
         INFO = get_value('ANDROIDURLCHECHINFO')
 
-        strline = cmdString('grep -r -Eo \'(http|https)://[^/"]+\' ' + self.appPath)
+        strline = cmdString('grep -Ir -Eo \'(http|https)://[^/"]+\' ' + self.appPath)
         out = os.popen(strline).readlines()
         urls = []
         for item in out:

@@ -17,7 +17,7 @@ class PendingIntentCheck(Base):
         LEVEL = 1
         INFO = get_value('PENDINGCHECHINFO')
 
-        strline = cmdString(f'grep -r "Landroid/app/PendingIntent;" {self.appPath}')
+        strline = cmdString(f'grep -Ir "Landroid/app/PendingIntent;" {self.appPath}')
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

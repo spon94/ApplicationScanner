@@ -17,7 +17,7 @@ class SQLInjectCheck(Base):
         INFO = get_value('SQLCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Landroid/database/sqlite/SQLiteDatabase" {self.appPath}'
+            f'grep -Ir "Landroid/database/sqlite/SQLiteDatabase" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

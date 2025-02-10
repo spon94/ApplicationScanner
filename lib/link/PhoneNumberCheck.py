@@ -16,7 +16,7 @@ class PhoneNumberCheck(Base):
         LEVEL = 1
         INFO = get_value('ANDROIDPHONENUMBERCHECHINFO')
 
-        strline = cmdString('grep -r -Eo \'\b1[3-9]\d{9}\b\' ' + self.appPath)
+        strline = cmdString('grep -Ir -Eo \'\b1[3-9]\d{9}\b\' ' + self.appPath)
         out = os.popen(strline).readlines()
         results = []
         for item in out:

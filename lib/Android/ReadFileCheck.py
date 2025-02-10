@@ -18,7 +18,7 @@ class ReadFileCheck(Base):
         INFO = get_value('READFILECHECHINFO')
 
         strline = cmdString(
-            'grep -r "getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences\|Landroid/content/Context;->getDir\|Landroid/content/Context;->openFileOutput" ' + self.appPath)
+            'grep -Ir "getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences\|Landroid/content/Context;->getDir\|Landroid/content/Context;->openFileOutput" ' + self.appPath)
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

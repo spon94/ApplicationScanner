@@ -8,7 +8,7 @@ from ..tools import *
 class WebViewCheck(Base):
     def scan(self):
         strline = cmdString(
-            'grep -r "Landroid/webkit/WebView" ' + self.appPath)
+            'grep -Ir "Landroid/webkit/WebView" ' + self.appPath)
         paths = getSmalis(os.popen(strline).readlines())
         resultsPassword = []
         resultsCert = []

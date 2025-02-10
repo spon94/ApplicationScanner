@@ -29,7 +29,7 @@ class VpnCheck(Base):
         results = []
         for function in vpn_functions:
             strline = cmdString(
-                f'grep -r "{function}" {self.appPath}'
+                f'grep -Ir "{function}" {self.appPath}'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:

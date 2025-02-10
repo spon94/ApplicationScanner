@@ -5,32 +5,28 @@ from ..info import Info
 from ..tools import *
 
 
-class AccountPasswdCheck(Base):
+class RuntimeCheck(Base):
     def scan(self):
-
-        # 定义捕获日志等级
-        keywords = [
-            "DEFAULT_ACCOUNT",
-            "CHOOSE_ACCOUNT",
-            "addAccountOptions",
-            "addAccountRequiredFeatures",
-            "alwaysPromptForAccount",
-            "selectedAccount"
+        
+        # Vpn 调用函数
+        vpn_functions = [
+            'Ljava/lang/Runtime;->exec',
+            'Ljava/lang/Runtime;->getRuntime'
         ]
 
-        set_values_for_key(key='ACCOUNTPASSWDTITLE', zh='账户密码信息检测',
+        set_values_for_key(key='RUNTIMECHECKTITLE', zh='运行其他可执行程序漏洞',
                            en='SQL injection detection')
-        set_values_for_key(key='ACCOUNTPASSWDINFO', zh='检测App是否存在敏感账户密码信息',
+        set_values_for_key(key='RUNTIMECHECKINFO', zh='检测App是否存在运行其他可执行程序漏洞',
                            en="Detect whether there are usage conditions for SQL injection in the App")
 
-        TITLE = get_value('ACCOUNTPASSWDTITLE')
+        TITLE = get_value('RUNTIMECHECKTITLE')
         LEVEL = 1
-        INFO = get_value('ACCOUNTPASSWDINFO')
+        INFO = get_value('RUNTIMECHECKINFO')
 
         results = []
-        for word in keywords:
+        for function in vpn_functions:
             strline = cmdString(
-                f'grep -Ir "{word}" {self.appPath}'
+                f'grep -Ir "{function}" {self.appPath}'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:
@@ -40,13 +36,15 @@ class AccountPasswdCheck(Base):
                     name  = getFileName(path)
                     for i in range(count):
                         line = lines[i]
-                        for pattern in keywords:
+                        for pattern in vpn_functions:
                             if pattern in line:
                                 result = name + ' : ' + str(i + 1) + line
                                 if result not in results:
                                     results.append(result)
+        if len(results) == 0:
+            results.append('Safe')
 
         Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='\n'.join(results)).description()
 
 
-register(AccountPasswdCheck)
+register(RuntimeCheck)

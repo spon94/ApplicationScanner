@@ -23,7 +23,7 @@ class CallbackCheck(Base):
 
         results = []
         strline = cmdString(
-            f'grep -r "public onGeolocationPermissionsShowPrompt"'
+            f'grep -Ir "public onGeolocationPermissionsShowPrompt" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         for path in paths:

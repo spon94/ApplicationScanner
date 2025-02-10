@@ -16,7 +16,7 @@ class ReflectCheck(Base):
         LEVEL = 1
         INFO = get_value('JAVACHECHINFO')
 
-        strline = cmdString(f'grep -r "Ljava/lang/reflect/" {self.appPath}')
+        strline = cmdString(f'grep -Ir "Ljava/lang/reflect/" {self.appPath}')
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

@@ -17,7 +17,7 @@ class FragmentCheck(Base):
         INFO = get_value('FRAGMENTCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Landroid/preference/PreferenceActivity" {self.appPath}'
+            f'grep -Ir "Landroid/preference/PreferenceActivity" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

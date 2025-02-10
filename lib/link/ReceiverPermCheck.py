@@ -26,7 +26,7 @@ class ReceiverPermCheck(Base):
         results = []
         for function in functions:
             strline = cmdString(
-                f'grep -iwr "{function}" {self.appPath}'
+                f'grep -Iiwr "{function}" {self.appPath}'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:

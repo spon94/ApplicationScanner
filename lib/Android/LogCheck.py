@@ -16,7 +16,7 @@ class LogCheck(Base):
         LEVEL = 1
         INFO = get_value('ANDROIDLOGCHECHINFO')
 
-        strline = cmdString('grep -r "Landroid/util/Log\|Ljava/io/PrintStream" ' + self.appPath)
+        strline = cmdString('grep -Ir "Landroid/util/Log\|Ljava/io/PrintStream" ' + self.appPath)
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

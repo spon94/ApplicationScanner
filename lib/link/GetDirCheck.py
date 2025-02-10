@@ -17,7 +17,7 @@ class GetDirCheck(Base):
         INFO = get_value('GETDIRCHECKINFO')
 
         strline = cmdString(
-            f'grep -wr "getDir" {self.appPath}'
+            f'grep -Iwr "getDir" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

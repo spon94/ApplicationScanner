@@ -17,7 +17,7 @@ class HiddenIntentCheck(Base):
         INFO = get_value('INTENTCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Landroid/content/Intent;-><init>" {self.appPath}'
+            f'grep -Ir "Landroid/content/Intent;-><init>" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

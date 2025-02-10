@@ -16,7 +16,7 @@ class HttpPlainTransfer(Base):
         LEVEL = 2
         INFO = get_value('HTTPCHECKINFO')
         strline = cmdString(
-            'grep -r -Eo "http://[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}:[0-9]\+"' + self.appPath
+            'grep -Ir -Eo "http://[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}:[0-9]\+"' + self.appPath
         )
         paths = getSmalis(os.popen(strline).readlines())
         Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='\n'.join(paths)).description()

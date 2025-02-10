@@ -25,7 +25,7 @@ class IntentSchemeURLCheck(Base):
 
         results = []
         strline = cmdString(
-            f'grep -r "Landroid/content/Intent;->parseUri"'
+            f'grep -Ir "Landroid/content/Intent;->parseUri" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         for path in paths:

@@ -17,7 +17,7 @@ class SQLCipherCheck(Base):
         INFO = get_value('SQLCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Landroid/database/sqlite/SQLiteDatabase" {self.appPath} | cut -d \"/\" -f6-'
+            f'grep -Ir "Landroid/database/sqlite/SQLiteDatabase" {self.appPath} | cut -d \"/\" -f6-'
         )
         paths = getSmalis(os.popen(strline).readlines())
         Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='\n'.join(paths)).description()

@@ -17,7 +17,7 @@ class SoLoadCheck(Base):
         INFO = get_value('SOLOADCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Ljava/lang/System;->load(Ljava/lang/String;)V" {self.appPath}'
+            f'grep -Ir "Ljava/lang/System;->load(Ljava/lang/String;)V" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

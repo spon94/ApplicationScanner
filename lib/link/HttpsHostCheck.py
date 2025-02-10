@@ -23,7 +23,7 @@ class HttpsHostCheck(Base):
         INFO = get_value('HTTPSHOSTINFO')
 
         strline = cmdString(
-            f'grep -ir "implements Ljavax/net/ssl/HostnameVerifier" {self.appPath}'
+            f'grep -Iir "implements Ljavax/net/ssl/HostnameVerifier" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

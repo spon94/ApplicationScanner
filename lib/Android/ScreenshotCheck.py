@@ -16,7 +16,7 @@ class ScreenshotCheck(Base):
         LEVEL = 1
         INFO = get_value('SCREENCHECHINFO')
 
-        strline = cmdString(f'grep -r ".super Landroid/app/Activity;" {self.appPath}')
+        strline = cmdString(f'grep -Ir ".super Landroid/app/Activity;" {self.appPath}')
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:

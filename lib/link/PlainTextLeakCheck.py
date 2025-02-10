@@ -32,7 +32,7 @@ class PlainTextLeakCheck(Base):
         results = []
         for word in keywords:
             strline = cmdString(
-                f'grep -ir "{word}" {self.appPath} | grep -v "{ "|".join(whitelist) }"'
+                f'grep -Iir "{word}" {self.appPath} | grep -v "{ "|".join(whitelist) }"'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:

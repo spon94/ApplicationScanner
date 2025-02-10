@@ -29,7 +29,7 @@ class LogUsageCheck(Base):
         INFO = get_value('SQLCHECHINFO')
 
         strline = cmdString(
-            f'grep -ir "log" {self.appPath}'
+            f'grep -irI "log" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

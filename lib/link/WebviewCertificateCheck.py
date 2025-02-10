@@ -18,7 +18,7 @@ class WebviewCertificateCheck(Base):
         INFO = get_value('WEBVIEWCERTINFO')
 
         strline = cmdString(
-            f'grep -ir "method public onReceivedSslError(Landroid/webkit/WebView;Landroid/webkit/SslErrorHandler;Landroid/net/http/SslError;)V" {self.appPath}'
+            f'grep -Iir "method public onReceivedSslError(Landroid/webkit/WebView;Landroid/webkit/SslErrorHandler;Landroid/net/http/SslError;)V" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

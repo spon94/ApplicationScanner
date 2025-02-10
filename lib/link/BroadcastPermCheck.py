@@ -25,7 +25,7 @@ class BroadcastPermCheck(Base):
         results = []
         for function in functions:
             strline = cmdString(
-                f'grep -r "{function}" {self.appPath}'
+                f'grep -Ir "{function}" {self.appPath}'
             )
             paths = getSmalis(os.popen(strline).readlines())
             for path in paths:

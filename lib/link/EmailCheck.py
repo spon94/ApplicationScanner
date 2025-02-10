@@ -16,7 +16,7 @@ class EmailCheck(Base):
         LEVEL = 1
         INFO = get_value('ANDROIDEMAILCHECHINFO')
 
-        strline = cmdString('grep -r -Eo \'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\' ' + self.appPath)
+        strline = cmdString('grep -Ir -Eo \'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\' ' + self.appPath)
         out = os.popen(strline).readlines()
         results = []
         for item in out:

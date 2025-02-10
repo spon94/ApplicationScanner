@@ -17,7 +17,7 @@ class DBCheck(Base):
         INFO = get_value('DBCHECHINFO')
 
         strline = cmdString(
-            f'grep -r "Landroid/content/Context;->openOrCreateDatabase" {self.appPath}'
+            f'grep -Ir "Landroid/content/Context;->openOrCreateDatabase" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

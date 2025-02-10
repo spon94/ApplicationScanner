@@ -23,7 +23,7 @@ class HttpsServerCheck(Base):
         INFO = get_value('HTTPSSERVERINFO')
 
         strline = cmdString(
-            f'grep -ir ".implements Ljavax/net/ssl/X509TrustManager" {self.appPath}'
+            f'grep -Iir ".implements Ljavax/net/ssl/X509TrustManager" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

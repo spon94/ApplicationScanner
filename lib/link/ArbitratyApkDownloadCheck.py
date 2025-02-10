@@ -5,17 +5,17 @@ from ..info import Info
 from ..tools import *
 import xml.etree.ElementTree as ET
 
-
-class AppCloneCheck(Base):
+# https://blog.csdn.net/qq_33462950/article/details/136249358
+class ArbitratyApkDownloadCheck(Base):
     def scan(self):
-        set_values_for_key(key='APPCLONETITLE', zh='应用克隆漏洞攻击',
+        set_values_for_key(key='APPDOWNLOADTITLE', zh='下载任意apk漏洞',
                            en='activity component implicit call risk detection')
-        set_values_for_key(key='APPCLONEINFO', zh='检测Apk中是否存在应用克隆漏洞攻击风险',
+        set_values_for_key(key='APPDOWNLOADINFO', zh='检测Apk中是否存在下载任意apk的漏洞',
                            en='Detect whether there is a risk of implicit calling of the activity component in Apk')
 
-        TITLE = get_value('APPCLONETITLE')
+        TITLE = get_value('APPDOWNLOADTITLE')
         LEVEL = 3
-        INFO = get_value('APPCLONEINFO')
+        INFO = get_value('APPDOWNLOADINFO')
 
         manifest_path = f'{self.appPath}/AndroidManifest.xml'
         tree = ET.parse(manifest_path)
@@ -43,7 +43,7 @@ class AppCloneCheck(Base):
                     name = getFilename(path)
                     for i in range(count):
                         line = lines[i]
-                        if "Landroid/webkit/WebView" in line:
+                        if "getUriForFile" in line:
                             result = name + ' : ' + str(i + 1) + line
                             if name not in webview_activities:
                                 webview_activities.append(name)
@@ -56,4 +56,4 @@ class AppCloneCheck(Base):
         Info(key=self.__class__, title=TITLE, level=LEVEL, info=INFO, result='\n'.join(results)).description()
 
 
-register(AppCloneCheck)
+register(ArbitratyApkDownloadCheck)

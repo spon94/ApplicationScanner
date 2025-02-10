@@ -17,7 +17,7 @@ class ProxyCheck(Base):
         INFO = get_value('PROXYCHECKINFO')
         results = []
         strline = cmdString(
-            'grep -r "getProxy"' + self.appPath
+            'grep -Ir "getProxy"' + self.appPath
         )
         paths = getSmalis(os.popen(strline).readlines())
         if len(paths) != 0:

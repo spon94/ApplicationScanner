@@ -17,7 +17,7 @@ class SharedPreferencesCheck(Base):
         INFO = get_value('SHAREDPREFERENCEINFO')
 
         strline = cmdString(
-            f'grep -r "getSharedPreferences" {self.appPath}'
+            f'grep -Ir "getSharedPreferences" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

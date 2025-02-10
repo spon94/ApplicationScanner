@@ -18,7 +18,7 @@ class SocketSecurity(Base):
         INFO = get_value('SOCKETSECURITYTINFO')
 
         strline = cmdString(
-            f'grep -ir "Ljavax/net/ssl/SSLSocket" {self.appPath}'
+            f'grep -Iir "Ljavax/net/ssl/SSLSocket" {self.appPath}'
         )
         paths = getSmalis(os.popen(strline).readlines())
         results = []

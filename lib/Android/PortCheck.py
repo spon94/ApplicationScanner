@@ -17,7 +17,7 @@ class PortCheck(Base):
         INFO = get_value('PORTCHECHINFO')
 
         strline = cmdString(
-            'grep -r "Ljava/net/DatagramPacket;->\|Ljava/net/DatagramSocket;->\|Ljava/net/Socket;-><init>\|Ljava/net/ServerSocket;-><init>" ' + self.appPath)
+            'grep -Ir "Ljava/net/DatagramPacket;->\|Ljava/net/DatagramSocket;->\|Ljava/net/Socket;-><init>\|Ljava/net/ServerSocket;-><init>" ' + self.appPath)
         paths = getSmalis(os.popen(strline).readlines())
         results = []
         for path in paths:
